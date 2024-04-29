@@ -1,6 +1,6 @@
 import './App.css';
 
-function App() {
+/*function App() {
   return (
     <div className="App">
         <div className="content">
@@ -8,6 +8,18 @@ function App() {
         </div>
     </div>
   );
+}*/
+
+function App() {
+  const title = "Welcome to the Blog"
+  return (
+    <div className="App">
+        <div className="content">
+          <h1> {title} </h1>
+        </div>
+    </div>
+  );
 }
+
 
 export default App;
