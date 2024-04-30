@@ -29,33 +29,41 @@ const Home = () => {
     console.log('hello, ninjas');
     } */
 
-/*const handleClickAgain = (name, e) => {
+    /*const handleClickAgain = (name, e) => {
     console.log('hello' + name, e.target);
-}*/ 
+    }*/ 
 
-    return (  
-        <div className="home">
+   
 
-            {/*{<h2>Homepage</h2>
+           /* {/*{<h2>Homepage</h2>
             <p>{name} is {age} years old</p>
             <button onClick={handleClick}>Click me</button>
 
             {/*<{button onClick={handleClickAgain(' mario')}> Click me again</button>}
             <button onClick = {(e) => handleClickAgain(' marwan', e)}> Click me one last time</button>
-            }*/}
+            }*/
 
-            {/*{blogs.map((blog) =>(
+            /*{blogs.map((blog) =>(
                 <div className="blog-preview" key ={blog.id}>
                     <h2>{blog.title}</h2>
                     <p>written by {blog.author}</p>
                 </div>
-            ))}*/}
+            ))}*/
 
-            <BlogList blogs = {blogs} title = "All Blogs!"/>
-            <BlogList blogs = {blogs.filter((blog) => blog.author === 'marwan')} title = "Maro's Blogs!"/>
+            const handleDelete = (id) => {
+                const newBlogs = blogs.filter(blog => blog.id !== id)
+                setBlogs(newBlogs);
+            }
+
+
+            return ( 
+                <div className="home">
+                <BlogList blogs = {blogs} title = "All Blogs!" handleDelete = {handleDelete} />
+                <BlogList blogs = {blogs.filter((blog) => blog.author === 'marwan')} title = "Maro's Blogs!"/>
 
         </div>  
-    );
+        );
+
 }
  
 export default Home;
