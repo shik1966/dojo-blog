@@ -10,6 +10,7 @@ const Home = () => {
     }*/
 
     const[blogs, setBlogs] = useState(null);
+    const[isPending, setIsPending] = useState(true);
 
    /* const[name, setName] = useState('Mario');
 
@@ -48,12 +49,15 @@ const Home = () => {
 
             const [name, setName] = useState('marwan');
 
+
+
            {/* const handleDelete = (id) => {
                 const newBlogs = blogs.filter(blog => blog.id !== id);  
                 setBlogs(newBlogs);
             }*/}
 
             useEffect(() =>{
+              setTimeout (() => {
                 fetch('http://localhost:8000/blogs')
                 .then(res => {
                     return res.json();
@@ -61,14 +65,15 @@ const Home = () => {
                 .then(data  => {
                     console.log(data);
                     setBlogs(data);
+                    setIsPending(false);
                 })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
+              }, 1000);
             }, []);
 
             return ( 
                 <div className="home">
+
+                {isPending && <div> loading...</div>}
                 { blogs && <BlogList blogs = {blogs} title = "All Blogs!" /*handleDelete = {handleDelete}*/ />}
                 {/*<button onClick= {() => setName('SIMO')}> change name </button>
                 <p> {name} </p>*/}
