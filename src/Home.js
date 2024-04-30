@@ -9,11 +9,7 @@ const Home = () => {
         console.log(name);
     }*/
 
-    const[blogs, setBlogs] = useState([
-        { title: 'My new website', body: 'lorem ipsum...', author: 'marwan', id: 1 },
-        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'selim', id: 2 },
-        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'youssef', id: 3 }
-    ]);
+    const[blogs, setBlogs] = useState(null);
 
    /* const[name, setName] = useState('Mario');
 
@@ -52,26 +48,34 @@ const Home = () => {
 
             const [name, setName] = useState('marwan');
 
-            const handleDelete = (id) => {
-                const newBlogs = blogs.filter(blog => blog.id !== id);
+           {/* const handleDelete = (id) => {
+                const newBlogs = blogs.filter(blog => blog.id !== id);  
                 setBlogs(newBlogs);
-            }
+            }*/}
 
             useEffect(() =>{
-                console.log('use effect ran');
-                //console.log(blogs);
-                console.log(name);
-            }, [name]);
+                fetch('http://localhost:8000/blogs')
+                .then(res => {
+                    return res.json();
+                })
+                .then(data  => {
+                    console.log(data);
+                    setBlogs(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+            }, []);
 
             return ( 
                 <div className="home">
-                <BlogList blogs = {blogs} title = "All Blogs!" handleDelete = {handleDelete} />
-                <button onClick= {() => setName('SIMO')}> change name </button>
-                <p> {name} </p>
-                <BlogList blogs = {blogs.filter((blog) => blog.author === 'marwan')} title = "Maro's Blogs!"/>
+                { blogs && <BlogList blogs = {blogs} title = "All Blogs!" /*handleDelete = {handleDelete}*/ />}
+                {/*<button onClick= {() => setName('SIMO')}> change name </button>
+                <p> {name} </p>*/}
+                { blogs && <BlogList blogs = {blogs.filter((blog) => blog.author === 'marwan')} title = "Maro's Blogs!"/>}
 
-        </div>  
-        );
+            </div>  
+            );
 
 }
  
