@@ -52,6 +52,7 @@ const Home = () => {
             ))}*/}
 
             <BlogList blogs = {blogs} title = "All Blogs!"/>
+            <BlogList blogs = {blogs.filter((blog) => blog.author === 'marwan')} title = "Maro's Blogs!"/>
 
         </div>  
     );
