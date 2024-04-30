@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogList from "./BlogList";
 const Home = () => {
     
     //let name = 'mario';
@@ -9,9 +10,9 @@ const Home = () => {
     }*/
 
     const[blogs, setBlogs] = useState([
-        { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
-        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
-        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
+        { title: 'My new website', body: 'lorem ipsum...', author: 'marwan', id: 1 },
+        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'selim', id: 2 },
+        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'youssef', id: 3 }
     ]);
 
    /* const[name, setName] = useState('Mario');
@@ -43,13 +44,14 @@ const Home = () => {
             <button onClick = {(e) => handleClickAgain(' marwan', e)}> Click me one last time</button>
             }*/}
 
-            {blogs.map((blog) =>(
+            {/*{blogs.map((blog) =>(
                 <div className="blog-preview" key ={blog.id}>
                     <h2>{blog.title}</h2>
                     <p>written by {blog.author}</p>
                 </div>
+            ))}*/}
 
-            ))}
+            <BlogList blogs = {blogs} title = "All Blogs!"/>
 
         </div>  
     );
